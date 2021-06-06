@@ -1,0 +1,31 @@
+.MainNavigation {
+  display: flex;
+  padding: 10px;
+  background-color: lightsteelblue;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MainNavigation__logo {
+  font-weight: 600;
+  background-color: lightyellow;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.MainNavigation__links {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+.MainNavigation__links li a {
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.MainNavigation__links li a:hover {
+  background-color: lightyellow;
+}

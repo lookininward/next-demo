@@ -1,0 +1,32 @@
+.meetupItem {
+  display: flex;
+  border: 1px solid lightgrey;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.meetupItem__imgWrapper {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  margin-right: 10px;
+}
+
+.meetupItem__img {
+  width: inherit;
+}
+
+.meetupItem__info {
+  padding: 10px;
+}
+
+.meetupItem__info__title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.meetupItem__info__address {
+  color: grey;
+}
