@@ -9,7 +9,7 @@ async function handler(req, res) {
     const { title, image, address, description } = data;
     const client = await getMongoClient();
     const db = client.db();
-    const meetupsCollection = await db.collection("meetups");
+    const meetupsCollection = db.collection("meetups");
 
     await meetupsCollection.insertOne({
       title,

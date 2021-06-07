@@ -10,11 +10,9 @@ function HomePage(props) {
 export async function getStaticProps() {
   const client = await getMongoClient();
   const db = client.db();
-  const meetupsCollection = await db.collection("meetups");
+  const meetupsCollection = db.collection("meetups");
   const meetups = await meetupsCollection.find().toArray();
   client.close();
-
-  fetch("http://localhost:3000/api/meetups/");
 
   return {
     props: {
