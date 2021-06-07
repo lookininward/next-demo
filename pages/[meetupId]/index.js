@@ -1,60 +1,55 @@
-import { useRouter } from "next/router";
+import { ObjectId } from "mongodb";
+import { getMongoClient } from "../../helpers/db";
 import MeetupDetails from "../../components/meetups/MeetupDetails";
 
 // our-domain.com/meetupId
 
 function Meetup(props) {
-  const router = useRouter();
-  const { meetupId } = router.query;
   return (
     <MeetupDetails
-      id="m1"
-      title="Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
-      image="https://images.pexels.com/photos/6730320/pexels-photo-6730320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-      address="3657  Ashmor Drive"
-      description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede."
+      id={props.meetupData.id}
+      title={props.meetupData.title}
+      image={props.meetupData.image}
+      address={props.meetupData.address}
+      description={props.meetupData.description}
     />
   );
 }
 
 export async function getStaticPaths() {
-  // fetch ids from server
+  const client = await getMongoClient();
+  const db = client.db();
+  const meetupsCollection = db.collection("meetups");
+  const meetupIds = await meetupsCollection.find({}, { _id: 1 }).toArray();
+  client.close();
+
   return {
     fallback: false,
-    paths: [
-      {
-        params: {
-          meetupId: "m1",
-        },
-      },
-      {
-        params: {
-          meetupId: "m2",
-        },
-      },
-    ],
+    paths: meetupIds.map((meetup) => ({
+      params: { meetupId: meetup._id.toString() },
+    })),
   };
 }
 
 export async function getStaticProps(context) {
   const { meetupId } = context.params;
+  const client = await getMongoClient();
+  const db = client.db();
+  const meetupsCollection = db.collection("meetups");
+  const meetup = await meetupsCollection.findOne({ _id: ObjectId(meetupId) });
+  client.close();
 
-  console.log("meetupId", meetupId);
-
-  // http req to fetch meetup data
   return {
     props: {
       meetupData: {
-        id: "m1",
-        title: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-        image:
-          "https://images.pexels.com/photos/6730320/pexels-photo-6730320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        address: "3657  Ashmor Drive",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.",
+        id: meetup._id.toString(),
+        title: meetup.title,
+        address: meetup.address,
+        image: meetup.image,
+        description: meetup.description,
       },
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 }
 
