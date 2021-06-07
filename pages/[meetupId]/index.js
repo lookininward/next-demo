@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+import Head from "next/head";
 import { ObjectId } from "mongodb";
 import { getMongoClient } from "../../helpers/db";
 import MeetupDetails from "../../components/meetups/MeetupDetails";
@@ -6,13 +8,19 @@ import MeetupDetails from "../../components/meetups/MeetupDetails";
 
 function Meetup(props) {
   return (
-    <MeetupDetails
-      id={props.meetupData.id}
-      title={props.meetupData.title}
-      image={props.meetupData.image}
-      address={props.meetupData.address}
-      description={props.meetupData.description}
-    />
+    <Fragment>
+      <Head>
+        <title>{props.meetupData.title}</title>
+        <meta name="description" content={props.meetupData.description} />
+      </Head>
+      <MeetupDetails
+        id={props.meetupData.id}
+        title={props.meetupData.title}
+        image={props.meetupData.image}
+        address={props.meetupData.address}
+        description={props.meetupData.description}
+      />
+    </Fragment>
   );
 }
 

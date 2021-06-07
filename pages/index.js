@@ -1,10 +1,23 @@
+import { Fragment } from "react";
+import Head from "next/head";
 import { getMongoClient } from "../helpers/db";
 import MeetupList from "../components/meetups/MeetupList";
 
 // our-domain.com
 
 function HomePage(props) {
-  return <MeetupList meetups={props.meetups} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>Meetups</title>
+        <meta
+          name="description"
+          content="Browse a huge list of meetups around the world."
+        />
+      </Head>
+      <MeetupList meetups={props.meetups} />
+    </Fragment>
+  );
 }
 
 export async function getStaticProps() {
