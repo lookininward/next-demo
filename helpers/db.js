@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
-const DEFAULT_DB = "nextDemo";
-const DEFAULT_PASSWORD = "MmeLP8WFQ4jfWIJE";
+const DEFAULT_DB = process.env.DEFAULT_DB;
+const DEFAULT_PASSWORD = process.env.DEFAULT_PASSWORD;
 
 export const getMongoClient = async () => {
   const client = await MongoClient.connect(
