@@ -1,16 +1,19 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
 .MainNavigation {
-  display: flex;
   padding: 10px;
-  background-color: lightsteelblue;
+  background-color: $color-red;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .MainNavigation__logo {
-  font-weight: 600;
-  background-color: lightyellow;
   padding: 4px 10px;
+  background-color: $color-grey3;
   border-radius: 6px;
+  font-weight: $font-weight-bold;
 }
 
 .MainNavigation__links {
@@ -23,9 +26,11 @@
 .MainNavigation__links li a {
   padding: 4px 10px;
   border-radius: 6px;
+  color: $color-grey3;
   cursor: pointer;
-}
 
-.MainNavigation__links li a:hover {
-  background-color: lightyellow;
+  &:hover {
+    color: $color-black;
+    background-color: $color-grey3;
+  }
 }
