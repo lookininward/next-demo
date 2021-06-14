@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import classes from "./MeetupItem.module.css";
+import classes from "./MeetupItem.module.scss";
 
 function MeetupItem(props) {
   const router = useRouter();

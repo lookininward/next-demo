@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import classes from "./NewMeetupForm.module.css";
+import classes from "./NewMeetupForm.module.scss";
 
 function NewMeetupForm(props) {
   const titleInputRef = useRef();
@@ -25,13 +25,12 @@ function NewMeetupForm(props) {
 
   return (
     <form className={classes.newMeetupForm} onSubmit={submitHandler}>
-      <h2>Create a New Meetup</h2>
       <div className={classes.newMeetupForm__inputWrapper}>
         <label className={classes.newMeetupForm__inputLabel} htmlFor="title">Title</label>
         <input className={classes.newMeetupForm__input} type="text" id="title" ref={titleInputRef} required />
       </div>
       <div className={classes.newMeetupForm__inputWrapper}>
-        <label className={classes.newMeetupForm__inputLabel} htmlFor="title">Image</label>
+        <label className={classes.newMeetupForm__inputLabel} htmlFor="title">Image Link</label>
         <input className={classes.newMeetupForm__input} type="url" id="image" ref={imageInputRef} required />
       </div>
       <div className={classes.newMeetupForm__inputWrapper}>

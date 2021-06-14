@@ -1,0 +1,53 @@
+@import "../../styles/viewports.scss";
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.meetupDetail {
+  padding: 30px 20px;
+  display: grid;
+  align-content: center;
+  margin-bottom: 10px;
+
+  @media (min-width: $viewport-mobile-lg) {
+    padding: 40px;
+  }
+
+  @media (min-width: $viewport-tablet) {
+    justify-content: center;
+    grid-template-columns: minmax(200px, 500px);
+  }
+}
+
+.meetupDetail__title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  margin-bottom: 10px;
+}
+
+.meetupDetail__address {
+  color: $color-grey;
+  margin-bottom: 10px;
+}
+
+.meetupDetail__description {
+  margin-bottom: 40px;
+}
+
+.meetupDetail__imgWrapper {
+  min-width: 180px;
+  width: 180px;
+  min-height: 180px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  overflow: hidden;
+  margin-right: 10px;
+
+  @media (min-width: $viewport-tablet) {
+    min-width: 250px;
+    width: 250px;
+    min-height: 250px;
+    height: 250px;
+  }
+}

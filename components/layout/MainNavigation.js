@@ -1,15 +1,12 @@
 import Link from "next/link";
-import classes from "./MainNavigation.module.css";
+import classes from "./MainNavigation.module.scss";
 
-function MainNavigation(props) {
+function MainNavigation() {
   return (
     <header className={classes.MainNavigation}>
-      <div className={classes.MainNavigation__logo}>Meetups</div>
+      <Link href="/"><div className={classes.MainNavigation__logo}>Meetups</div></Link>
       <nav>
         <ul className={classes.MainNavigation__links}>
-          <li>
-            <Link href="/">All</Link>
-          </li>
           <li>
             <Link href="/new-meetup">Add New Meetup</Link>
           </li>
