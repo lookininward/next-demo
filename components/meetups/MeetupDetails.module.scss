@@ -51,3 +51,12 @@
     height: 250px;
   }
 }
+
+.meetupDetail__img {
+  transform: scale(1.5);
+  width: 180px;
+
+  @media (min-width: $viewport-tablet) {
+    width: 250px;
+  }
+}
